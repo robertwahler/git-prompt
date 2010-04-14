@@ -411,7 +411,7 @@ parse_git_status() {
         [[  -n ${git_dir/./} ]]   ||   return  1
 
         vcs=git
-        parse_git_complete
+        #parse_git_complete
 
         ##########################################################   GIT STATUS
 	file_regex='\([^/]*\/\?\).*'
@@ -497,9 +497,9 @@ parse_git_status() {
 
 
         ####  GET GIT HEX-REVISION
-        rawhex=`git rev-parse HEAD 2>/dev/null`
-        rawhex=${rawhex/HEAD/}
-        rawhex=${rawhex:0:6}
+        #rawhex=`git rev-parse HEAD 2>/dev/null`
+        #rawhex=${rawhex/HEAD/}
+        #rawhex=${rawhex:0:6}
 
         #### branch
         branch=${branch/master/M}
@@ -525,7 +525,8 @@ parse_git_status() {
                         fi
                         #branch="<$branch>"
                 fi
-                vcs_info="$branch$white=$rawhex"
+                #vcs_info="$branch$white=$rawhex"
+                vcs_info="$branch$white"
 
         fi
  }
