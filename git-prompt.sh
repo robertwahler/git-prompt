@@ -406,8 +406,14 @@ parse_git_status() {
 
         #git_dir=`[[ $git_module = "on" ]]  &&  git rev-parse --git-dir 2> /dev/null`
         [ $git_module = "on" ]  || return 1
-        [ -d ".git" ]  || return 1
-        git_dir=".git"
+
+        if [ -d ".git" ]; then
+          # if current folder contains '.git', avoid the call to 'git rev-parse'
+          git_dir=".git"
+        else 
+          git_dir=`git rev-parse --git-dir 2> /dev/null`
+        fi
+
 
         [[  -n ${git_dir/./} ]]   ||   return  1
 
